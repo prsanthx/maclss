@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "maclss"
+version = "0.1.0"
+description = "Frame interpolation for CrossOver game output and offline video testing"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+authors = [{ name = "Maclss" }]
+dependencies = [
+    "opencv-python-headless>=4.8",
+    "numpy>=1.24",
+    "click>=8.1",
+]
+
+[project.optional-dependencies]
+# Future: RIFE / neural interpolator (requires torch + model weights).
+rife = [
+    "torch>=2.0",
+]
+dev = [
+    "pytest>=7.4",
+]
+
+[project.scripts]
+maclss = "maclss.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["maclss*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
